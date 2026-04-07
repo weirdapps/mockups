@@ -13,16 +13,18 @@ The device frame PNGs have **two** transparent regions: the outer rounded corner
 
 ## Installation
 
+### As a CLI tool (recommended)
+
 ```bash
-pip install git+https://github.com/weirdapps/mockups.git
+pipx install git+https://github.com/weirdapps/mockups.git
 ```
 
-Or clone and install locally:
+This installs `mockup` as a standalone command in an isolated environment. Install pipx with `brew install pipx` if needed.
+
+### As a library
 
 ```bash
-git clone https://github.com/weirdapps/mockups.git
-cd mockups
-pip install .
+pip install git+https://github.com/weirdapps/mockups.git
 ```
 
 ## Usage
@@ -81,6 +83,7 @@ output = create_mockup(
 ```bash
 git clone https://github.com/weirdapps/mockups.git
 cd mockups
+python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 pytest
 ```
