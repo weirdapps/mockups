@@ -76,6 +76,11 @@ pip install pytest
 pytest test_iphone_mockup.py
 ```
 
+## Acknowledgments
+
+- Device frame images are based on Apple's publicly available product imagery. iPhone is a trademark of Apple Inc., registered in the U.S. and other countries. This project is not affiliated with or endorsed by Apple.
+- Built with [Pillow](https://pillow.readthedocs.io/) and [NumPy](https://numpy.org/).
+
 ## License
 
 MIT
