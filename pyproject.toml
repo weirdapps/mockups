@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mockups"
+version = "1.0.0"
+description = "Pixel-perfect iPhone mockup generator using flood-fill masking"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [
+    { name = "Dimitrios Plessas" },
+]
+keywords = ["iphone", "mockup", "screenshot", "device-frame"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Multimedia :: Graphics",
+]
+dependencies = [
+    "pillow>=10.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+mockup = "mockups.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/weirdapps/mockups"
+Repository = "https://github.com/weirdapps/mockups"
+Issues = "https://github.com/weirdapps/mockups/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mockups"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

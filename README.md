@@ -11,40 +11,47 @@ Uses a **flood-fill masking algorithm** to ensure content only appears within th
 
 The device frame PNGs have **two** transparent regions: the outer rounded corners and the inner screen area. A simple alpha check would bleed content through the corners. Instead, flood-fill starts from the screen center and finds only the connected inner transparent region, creating a precise mask.
 
-## Quick Start
+## Installation
 
 ```bash
-pip install pillow numpy
-python iphone_mockup.py screenshot.png
+pip install git+https://github.com/weirdapps/mockups.git
 ```
 
-Output: `screenshot_mockup.png` in the same directory.
+Or clone and install locally:
+
+```bash
+git clone https://github.com/weirdapps/mockups.git
+cd mockups
+pip install .
+```
 
 ## Usage
 
+### Command Line
+
 ```bash
 # Basic (default: iPhone 16 Pro Max Black Titanium)
-python iphone_mockup.py screenshot.png
+mockup screenshot.png
 
 # Custom output path
-python iphone_mockup.py screenshot.png mockup.png
+mockup screenshot.png mockup.png
 
 # Different frame
-python iphone_mockup.py screenshot.png --frame 16_pro_black
+mockup screenshot.png --frame 16_pro_black
 
 # List available frames
-python iphone_mockup.py --list-frames
+mockup --list-frames
 ```
 
 ### Python API
 
 ```python
-from iphone_mockup import create_mockup
+from mockups import create_mockup
 
 output = create_mockup(
     screenshot_path="screenshot.png",
     output_path="mockup.png",
-    frame_key="16_pro_max_black"
+    frame_key="16_pro_max_black",
 )
 ```
 
@@ -69,11 +76,13 @@ output = create_mockup(
 - **Format**: PNG with transparent background
 - **Resolution**: Full frame dimensions (1520x3068 for Pro Max, 1406x2822 for Pro)
 
-## Tests
+## Development
 
 ```bash
-pip install pytest
-pytest test_iphone_mockup.py
+git clone https://github.com/weirdapps/mockups.git
+cd mockups
+pip install -e .
+pytest
 ```
 
 ## Acknowledgments
