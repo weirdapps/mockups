@@ -30,7 +30,8 @@ Available frames:
     parser.add_argument("screenshot", nargs="?", help="Path to screenshot image")
     parser.add_argument("output", nargs="?", help="Output path (optional)")
     parser.add_argument(
-        "--frame", "-f",
+        "--frame",
+        "-f",
         default=DEFAULT_FRAME,
         choices=list(FRAMES.keys()),
         help=f"iPhone frame to use (default: {DEFAULT_FRAME})",
@@ -57,7 +58,9 @@ Available frames:
         parser.error("the following arguments are required: screenshot")
 
     try:
-        output = create_mockup(args.screenshot, args.output, args.frame, args.frames_dir)
+        output = create_mockup(
+            args.screenshot, args.output, args.frame, args.frames_dir
+        )
         print(f"Mockup saved: {output}")
     except (ValueError, FileNotFoundError) as e:
         print(f"Error: {e}", file=sys.stderr)

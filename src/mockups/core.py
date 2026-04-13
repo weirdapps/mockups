@@ -83,7 +83,7 @@ def _flood_fill_screen_mask(alpha, start_x, start_y, threshold=50):
         if alpha[y, x] < threshold:
             mask[y, x] = 255
 
-            for nx, ny in [(x-1, y), (x+1, y), (x, y-1), (x, y+1)]:
+            for nx, ny in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
                 if 0 <= nx < w and 0 <= ny < h and not visited[ny, nx]:
                     visited[ny, nx] = True
                     if alpha[ny, nx] < threshold:
@@ -97,7 +97,9 @@ def get_frames_dir():
     return Path(str(files("mockups").joinpath("frames")))
 
 
-def create_mockup(screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, frames_dir=None):
+def create_mockup(
+    screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, frames_dir=None
+):
     """
     Create a pixel-perfect iPhone mockup.
 
@@ -121,8 +123,7 @@ def create_mockup(screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, fr
 
     if frame_key not in FRAMES:
         raise ValueError(
-            f"Unknown frame: {frame_key}. "
-            f"Available: {list(FRAMES.keys())}"
+            f"Unknown frame: {frame_key}. Available: {list(FRAMES.keys())}"
         )
 
     config = FRAMES[frame_key]
@@ -130,8 +131,7 @@ def create_mockup(screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, fr
 
     if not frame_path.exists():
         raise FileNotFoundError(
-            f"Frame not found: {frame_path}. "
-            f"Make sure device frame PNGs are installed."
+            f"Frame not found: {frame_path}. Make sure device frame PNGs are installed."
         )
 
     screenshot_path = Path(screenshot_path)

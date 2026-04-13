@@ -12,13 +12,25 @@ from mockups.core import get_frames_dir
 
 
 def test_frames_dict_has_expected_keys():
-    expected = {"16_pro_max_black", "16_pro_max_natural", "16_pro_max_white",
-                "16_pro_max_desert", "16_pro_black", "16_pro_natural"}
+    expected = {
+        "16_pro_max_black",
+        "16_pro_max_natural",
+        "16_pro_max_white",
+        "16_pro_max_desert",
+        "16_pro_black",
+        "16_pro_natural",
+    }
     assert set(FRAMES.keys()) == expected
 
 
 def test_frames_have_required_fields():
-    required_fields = {"path", "content_left", "content_top", "content_right", "content_bottom"}
+    required_fields = {
+        "path",
+        "content_left",
+        "content_top",
+        "content_right",
+        "content_bottom",
+    }
     for key, config in FRAMES.items():
         assert required_fields.issubset(config.keys()), f"Frame {key} missing fields"
 
@@ -43,7 +55,8 @@ def test_bundled_frames_exist():
 def test_list_frames_cli():
     result = subprocess.run(
         [sys.executable, "-m", "mockups.cli", "--list-frames"],
-        capture_output=True, text=True,
+        capture_output=True,
+        text=True,
     )
     assert result.returncode == 0
     assert "Available frames:" in result.stdout
@@ -90,7 +103,9 @@ def test_create_mockup_pro_frame(tmp_path):
     screenshot.save(str(screenshot_path))
 
     output_path = tmp_path / "pro_mockup.png"
-    result = create_mockup(str(screenshot_path), str(output_path), frame_key="16_pro_black")
+    result = create_mockup(
+        str(screenshot_path), str(output_path), frame_key="16_pro_black"
+    )
 
     mockup = Image.open(result)
     assert mockup.size == (1406, 2822)  # Pro dimensions
