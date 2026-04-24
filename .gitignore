@@ -3,8 +3,8 @@ __pycache__/
 *.py[cod]
 *.so
 .env
-.venv/
-venv/
+.venv
+venv
 .idea/
 .vscode/
 *.swp
