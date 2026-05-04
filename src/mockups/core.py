@@ -63,7 +63,7 @@ FRAMES = {
 DEFAULT_FRAME = "16_pro_max_black"
 
 
-def _flood_fill_screen_mask(alpha, start_x, start_y, threshold=50):
+def _flood_fill_screen_mask(alpha, start_x, start_y, threshold=50):  # noqa: S3776 - standard flood-fill algorithm
     """
     Create a screen mask by flood-filling from a starting point.
 
