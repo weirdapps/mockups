@@ -3,7 +3,7 @@
 import argparse
 import sys
 
-from mockups.core import FRAMES, DEFAULT_FRAME, create_mockup
+from mockups.core import DEFAULT_FRAME, FRAMES, create_mockup
 
 
 def main():
@@ -58,9 +58,7 @@ Available frames:
         parser.error("the following arguments are required: screenshot")
 
     try:
-        output = create_mockup(
-            args.screenshot, args.output, args.frame, args.frames_dir
-        )
+        output = create_mockup(args.screenshot, args.output, args.frame, args.frames_dir)
         print(f"Mockup saved: {output}")
     except (ValueError, FileNotFoundError) as e:
         print(f"Error: {e}", file=sys.stderr)

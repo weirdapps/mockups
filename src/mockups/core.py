@@ -9,9 +9,8 @@ from collections import deque
 from importlib.resources import files
 from pathlib import Path
 
-from PIL import Image
 import numpy as np
-
+from PIL import Image
 
 # Frame configurations
 # content_* defines where the screenshot content should be placed
@@ -97,9 +96,7 @@ def get_frames_dir():
     return Path(str(files("mockups").joinpath("frames")))
 
 
-def create_mockup(
-    screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, frames_dir=None
-):
+def create_mockup(screenshot_path, output_path=None, frame_key=DEFAULT_FRAME, frames_dir=None):
     """
     Create a pixel-perfect iPhone mockup.
 
@@ -122,9 +119,7 @@ def create_mockup(
         frames_dir = Path(frames_dir)
 
     if frame_key not in FRAMES:
-        raise ValueError(
-            f"Unknown frame: {frame_key}. Available: {list(FRAMES.keys())}"
-        )
+        raise ValueError(f"Unknown frame: {frame_key}. Available: {list(FRAMES.keys())}")
 
     config = FRAMES[frame_key]
     frame_path = frames_dir / config["path"]

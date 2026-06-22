@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from mockups import FRAMES, DEFAULT_FRAME, create_mockup
+from mockups import DEFAULT_FRAME, FRAMES, create_mockup
 from mockups.core import get_frames_dir
 
 
@@ -47,7 +47,7 @@ def test_default_frame_exists_in_frames():
 
 def test_bundled_frames_exist():
     frames_dir = get_frames_dir()
-    for key, config in FRAMES.items():
+    for _key, config in FRAMES.items():
         frame_path = frames_dir / config["path"]
         assert frame_path.exists(), f"Frame file missing: {frame_path}"
 
@@ -103,9 +103,7 @@ def test_create_mockup_pro_frame(tmp_path):
     screenshot.save(str(screenshot_path))
 
     output_path = tmp_path / "pro_mockup.png"
-    result = create_mockup(
-        str(screenshot_path), str(output_path), frame_key="16_pro_black"
-    )
+    result = create_mockup(str(screenshot_path), str(output_path), frame_key="16_pro_black")
 
     mockup = Image.open(result)
     assert mockup.size == (1406, 2822)  # Pro dimensions
