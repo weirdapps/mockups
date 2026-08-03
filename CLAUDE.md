@@ -36,6 +36,8 @@ pytest
 
 CI runs `ruff check` and `ruff format --check`, then `pytest`, on every push/PR to `master` (see `.github/workflows/ci.yml`). Python 3.12 is used in CI. mypy, gitleaks, yamllint, and markdownlint run only via `pre-commit` locally.
 
+Ruff is pinned to an exact version in CI and in `.pre-commit-config.yaml`; bump both together or local and CI results diverge. `ruff format` also formats Python code blocks inside Markdown, so `README.md` snippets are checked by `ruff format --check .`.
+
 ## Code Organization
 
 ```text
@@ -57,3 +59,4 @@ Bundled frame keys (see `FRAMES` in `core.py`): `16_pro_max_black` (default), `1
 - Flood-fill starts from screen center (`fw // 2, fh // 2`); do not change the seed point without verifying all frame variants.
 - Type annotations are encouraged on public functions; mypy checks them via the pre-commit hook (not CI).
 - Output is always PNG with a transparent RGBA background regardless of input format.
+- Every `github/codeql-action/*` step in `.github/workflows/codeql.yml` must be pinned to the SAME version. A split across `init` and `analyze` fails the run with "Loaded a configuration file for version X, but running version Y". Dependabot groups them under `codeql-action` in `.github/dependabot.yml` so they always bump in one PR; never merge a partial bump.

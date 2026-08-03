@@ -19,8 +19,9 @@ repos:
         args: ['--maxkb=1000']
 
   # Ruff - replaces black, isort, flake8
+  # Keep this rev in sync with the pinned ruff version in .github/workflows/ci.yml.
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.12
+    rev: v0.16.1
     hooks:
       - id: ruff
         args: [--fix]
@@ -45,7 +46,10 @@ repos:
     rev: v1.35.1
     hooks:
       - id: yamllint
-        args: [--strict, -d, '{extends: default, rules: {line-length: {max: 120}, document-start: disable}}']
+        # min-spaces-from-content is relaxed to 1 because Dependabot writes
+        # its "uses: action@<sha> # vX.Y.Z" pins with a single space and we
+        # cannot control that formatting.
+        args: [--strict, -d, '{extends: default, rules: {line-length: {max: 120}, document-start: disable, comments: {min-spaces-from-content: 1}}}']
         files: \.github/workflows/.*\.ya?ml$
 
   # Markdown linting
