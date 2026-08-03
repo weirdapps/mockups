@@ -90,9 +90,9 @@ from mockups import create_mockup, FRAMES, DEFAULT_FRAME
 
 output = create_mockup(
     screenshot_path="screenshot.png",
-    output_path="mockup.png",     # optional
-    frame_key="16_pro_max_black", # optional, defaults to DEFAULT_FRAME
-    frames_dir=None,              # optional override
+    output_path="mockup.png",  # optional
+    frame_key="16_pro_max_black",  # optional, defaults to DEFAULT_FRAME
+    frames_dir=None,  # optional override
 )
 print(f"Saved: {output}")
 
@@ -140,6 +140,8 @@ pytest
 ```
 
 The project uses [Ruff](https://docs.astral.sh/ruff/) for linting and formatting, and [pre-commit](https://pre-commit.com/) hooks that also run mypy, gitleaks, yamllint, and markdownlint. CI (`.github/workflows/ci.yml`) runs `ruff check` and `ruff format --check`, then `pytest`, on every push and PR to `master`.
+
+Ruff is pinned to an exact version in CI (`pip install ruff==0.16.1`) and must be kept in sync with the `ruff-pre-commit` rev in `.pre-commit-config.yaml`. Bump both together. Note that `ruff format` also formats Python code blocks inside Markdown, so the snippets in this README are checked by CI too.
 
 Install the hooks locally with:
 
