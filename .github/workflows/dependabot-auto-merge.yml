@@ -7,10 +7,13 @@ permissions:
 
 jobs:
   auto-merge:
-    # Shared implementation. Native `gh pr merge --auto` cannot work here
-    # (branch protection is a paid feature on private repos, and
-    # allow_auto_merge silently no-ops), so the reusable polls this PR's own
-    # checks and merges once they are green. Majors stay open for review.
+    # Shared implementation. It tries native `gh pr merge --auto` first and only
+    # polls this PR's own checks if that call fails. The fast path DOES work here:
+    # mockups is public and allow_auto_merge is on, so `--auto` merges as soon as
+    # master's required checks allow. On 2026-08-01 nothing gated it, PR #11 merged
+    # 11 seconds after opening, and the codeql-action init/analyze split it left
+    # behind turned the scheduled CodeQL run red on 2026-08-03. Keep CI and CodeQL
+    # as required status checks on master. Majors stay open for review.
     # weirdapps/shared-workflows dependabot-auto-merge.yml @main as of 2026-08-03
     # yamllint disable-line rule:line-length
     uses: weirdapps/shared-workflows/.github/workflows/dependabot-auto-merge.yml@1cdc75d954fa1d60ef35937b21fccde923f42f9e
