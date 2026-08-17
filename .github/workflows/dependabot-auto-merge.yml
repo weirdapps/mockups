@@ -14,6 +14,6 @@ jobs:
     # 11 seconds after opening, and the codeql-action init/analyze split it left
     # behind turned the scheduled CodeQL run red on 2026-08-03. Keep CI and CodeQL
     # as required status checks on master. Majors stay open for review.
-    # weirdapps/shared-workflows dependabot-auto-merge.yml @main as of 2026-08-03
+    # weirdapps/shared-workflows dependabot-auto-merge.yml @main as of 2026-08-17
     # yamllint disable-line rule:line-length
-    uses: weirdapps/shared-workflows/.github/workflows/dependabot-auto-merge.yml@1cdc75d954fa1d60ef35937b21fccde923f42f9e
+    uses: weirdapps/shared-workflows/.github/workflows/dependabot-auto-merge.yml@6a60fa229d5b7f3cc9750493ca017bd044efd2fe
