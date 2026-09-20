@@ -131,7 +131,10 @@ Add a new frame by dropping its PNG into `src/mockups/frames/` and adding an ent
 ## Development
 
 ```bash
+# HTTPS (no SSH key required):
 git clone https://github.com/weirdapps/mockups.git
+# or, with SSH:
+git clone git@github.com:weirdapps/mockups.git
 cd mockups
 python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
